@@ -10,3 +10,7 @@ const port = process.env.DB_PORT || 5432;
 module.exports = new Pool({
   connectionString: `postgresql://${user}:${password}@${host}:${port}/${database}`
 });
+
+pool.on("error", (err) => {
+  console.error("Unexpected PG client error:", err);
+});

@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const requireAdmin = require("../middleware/requireAdmin");
 
 const itemsController = require("../controllers/itemsController");
 
@@ -19,9 +20,9 @@ router.get("/:id", itemsController.showItem);
 router.get("/:id/edit", itemsController.editItemForm);
 
 // POST /items/:id/edit
-router.post("/:id/edit", itemsController.updateItem);
+router.post("/:id/edit", requireAdmin, itemsController.updateItem);
 
 // POST /items/:id/delete
-router.post("/:id/delete", itemsController.deleteItem);
+router.post("/:id/delete", requireAdmin, itemsController.deleteItem);
 
 module.exports = router;

@@ -41,6 +41,10 @@
   <% } %>
     <form method="POST" action="/categories/<%= category.id %>/delete"
         onsubmit="return confirm('Delete this category? Items must be removed first.');">
+        <label>
+            Admin password
+            <input type="password" name="admin_password" required />
+        </label>
     <button style="margin-top:16px; color:red;">Delete Category</button>
     </form>
 </main>

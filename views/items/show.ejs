@@ -27,9 +27,12 @@
       Created: <%= item.created_at %> <br />
       Updated: <%= item.updated_at %>
     </p>
-    <form method="POST" action="/items/<%= item.id %>/delete"
-        onsubmit="return confirm('Delete this item?');">
-    <button style="margin-top:16px; color:red;">Delete Item</button>
+    <form method="POST" action="/items/<%= item.id %>/delete">
+    <label>
+        Admin password
+        <input type="password" name="admin_password" required />
+    </label>
+    <button style="margin-top:10px; color:red;">Delete Item</button>
     </form>
   </div>
 </main>

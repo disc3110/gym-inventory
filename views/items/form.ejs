@@ -83,6 +83,11 @@
         <textarea name="notes" rows="3"><%= item?.notes ?? '' %></textarea>
       </label>
 
+      <label>
+        Admin password (required to save changes)
+      <input type="password" name="admin_password" required />
+      </label>
+
       <br /><br />
 
       <button type="submit">Save</button>

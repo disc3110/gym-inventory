@@ -1,0 +1,26 @@
+<%- include("../partials/head", { title: "Categories" }) %>
+<%- include("../partials/nav") %>
+
+<main>
+  <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:16px;">
+    <h1 style="margin:0;">Categories</h1>
+    <a href="/categories/new" class="pill" style="text-decoration:none;">+ Add Category</a>
+  </div>
+
+  <% if (!categories || categories.length === 0) { %>
+    <p class="muted">No categories yet.</p>
+  <% } else { %>
+    <% categories.forEach((c) => { %>
+      <div class="card">
+        <h2 style="margin:0 0 6px 0;">
+          <a href="/categories/<%= c.id %>"><%= c.name %></a>
+        </h2>
+        <% if (c.description) { %>
+          <p class="muted" style="margin:0;"><%= c.description %></p>
+        <% } %>
+      </div>
+    <% }) %>
+  <% } %>
+</main>
+
+<%- include("../partials/foot") %>

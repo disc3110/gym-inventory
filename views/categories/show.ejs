@@ -1,0 +1,48 @@
+<%- include("../partials/head", { title: category?.name ?? "Category" }) %>
+<%- include("../partials/nav") %>
+
+<main>
+  <a href="/categories" class="muted">← Back to categories</a>
+
+  <h1 style="margin-bottom:6px;"><%= category.name %></h1>
+  <% if (category.description) { %>
+    <p class="muted"><%= category.description %></p>
+  <% } %>
+
+  <h2>Items</h2>
+
+  <% if (!items || items.length === 0) { %>
+    <p class="muted">No items in this category yet.</p>
+  <% } else { %>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Brand/Model</th>
+          <th>Condition</th>
+          <th>Qty</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% items.forEach((item) => { %>
+          <tr>
+            <td>
+              <a href="/items/<%= item.id %>"><%= item.name %></a>
+            </td>
+            <td class="muted">
+              <%= [item.brand, item.model].filter(Boolean).join(" ") || "—" %>
+            </td>
+            <td><span class="pill"><%= item.condition %></span></td>
+            <td><%= item.quantity %> <%= item.unit %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  <% } %>
+    <form method="POST" action="/categories/<%= category.id %>/delete"
+        onsubmit="return confirm('Delete this category? Items must be removed first.');">
+    <button style="margin-top:16px; color:red;">Delete Category</button>
+    </form>
+</main>
+
+<%- include("../partials/foot") %>

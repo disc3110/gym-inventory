@@ -1,0 +1,37 @@
+<%- include("../partials/head", { title: item?.name ?? "Item" }) %>
+<%- include("../partials/nav") %>
+
+<main>
+  <a href="/items" class="muted">← Back to items</a>
+
+  <h1 style="margin-bottom:6px;"><%= item.name %></h1>
+  <p class="muted" style="margin-top:0;">
+    Category: <strong><%= item.category_name ?? "—" %></strong>
+  </p>
+
+  <div class="card">
+    <p><strong>Brand:</strong> <%= item.brand ?? "—" %></p>
+    <p><strong>Model:</strong> <%= item.model ?? "—" %></p>
+    <p><strong>Condition:</strong> <span class="pill"><%= item.condition %></span></p>
+    <p><strong>Quantity:</strong> <%= item.quantity %> <%= item.unit %></p>
+    <p><strong>Serial #:</strong> <%= item.serial_number ?? "—" %></p>
+    <p><strong>Location:</strong> <%= item.location ?? "—" %></p>
+    <p><strong>Purchase date:</strong> <%= item.purchase_date ?? "—" %></p>
+    <p><strong>Purchase price:</strong> <%= item.purchase_price ?? "—" %></p>
+
+    <% if (item.notes) { %>
+      <p><strong>Notes:</strong> <%= item.notes %></p>
+    <% } %>
+
+    <p class="muted" style="margin-bottom:0;">
+      Created: <%= item.created_at %> <br />
+      Updated: <%= item.updated_at %>
+    </p>
+    <form method="POST" action="/items/<%= item.id %>/delete"
+        onsubmit="return confirm('Delete this item?');">
+    <button style="margin-top:16px; color:red;">Delete Item</button>
+    </form>
+  </div>
+</main>
+
+<%- include("../partials/foot") %>

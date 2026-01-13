@@ -3,7 +3,7 @@ const router = Router();
 
 // Define a simple route for the home page
 router.get('/', (req, res) => {
-  res.send('Welcome to the Home Page!');
+  res.render('index', { title: 'Gym Inventory Home' });
 });
 
 module.exports = router;    

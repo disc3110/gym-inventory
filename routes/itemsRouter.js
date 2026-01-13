@@ -1,26 +1,27 @@
-const { Router } = require('express');
-const router = Router();
-const itemsController = require('../controllers/itemsController');
+const express = require("express");
+const router = express.Router();
 
-// List all items
-router.get('/', itemsController.listItems);
+const itemsController = require("../controllers/itemsController");
 
-// Show form to create a new item
-router.get('/new', itemsController.newItemForm);
+// GET /items
+router.get("/", itemsController.listItems);
 
-// Create a new item
-router.post('/new', itemsController.createItem);	
+// GET /items/new
+router.get("/new", itemsController.newItemForm);
 
-// Show a specific item
-router.get('/:id', itemsController.showItem);
+// POST /items
+router.post("/", itemsController.createItem);
 
-// Show form to edit an item
-router.get('/:id/edit', itemsController.editItemForm);
+// GET /items/:id
+router.get("/:id", itemsController.showItem);
 
-// Update an item
-router.post('/:id/edit', itemsController.updateItem);
+// GET /items/:id/edit
+router.get("/:id/edit", itemsController.editItemForm);
 
-// Delete an item
-router.post('/:id/delete', itemsController.deleteItem);
+// POST /items/:id/edit
+router.post("/:id/edit", itemsController.updateItem);
+
+// POST /items/:id/delete
+router.post("/:id/delete", itemsController.deleteItem);
 
 module.exports = router;

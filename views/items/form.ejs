@@ -1,0 +1,94 @@
+<%- include("../partials/head", { title }) %>
+<%- include("../partials/nav") %>
+
+<main>
+  <h1><%= title %></h1>
+
+  <form method="POST" action="<%= action %>">
+    <div class="card">
+
+      <label>
+        Category
+        <select name="category_id" required>
+          <% categories.forEach((c) => { %>
+            <option
+              value="<%= c.id %>"
+              <%= item?.category_id === c.id ? "selected" : "" %>
+            >
+              <%= c.name %>
+            </option>
+          <% }) %>
+        </select>
+      </label>
+
+      <br /><br />
+
+      <label>
+        Name
+        <input type="text" name="name" required value="<%= item?.name ?? '' %>" />
+      </label>
+
+      <br /><br />
+
+      <label>
+        Brand
+        <input type="text" name="brand" value="<%= item?.brand ?? '' %>" />
+      </label>
+
+      <br /><br />
+
+      <label>
+        Model
+        <input type="text" name="model" value="<%= item?.model ?? '' %>" />
+      </label>
+
+      <br /><br />
+
+      <label>
+        Condition
+        <select name="condition">
+          <% ['new','good','worn','needs_repair'].forEach((c) => { %>
+            <option value="<%= c %>" <%= item?.condition === c ? "selected" : "" %>>
+              <%= c %>
+            </option>
+          <% }) %>
+        </select>
+      </label>
+
+      <br /><br />
+
+      <label>
+        Quantity
+        <input type="number" name="quantity" min="0" value="<%= item?.quantity ?? 1 %>" />
+      </label>
+
+      <br /><br />
+
+      <label>
+        Unit
+        <input type="text" name="unit" value="<%= item?.unit ?? 'pcs' %>" />
+      </label>
+
+      <br /><br />
+
+      <label>
+        Location
+        <input type="text" name="location" value="<%= item?.location ?? '' %>" />
+      </label>
+
+      <br /><br />
+
+      <label>
+        Notes
+        <textarea name="notes" rows="3"><%= item?.notes ?? '' %></textarea>
+      </label>
+
+      <br /><br />
+
+      <button type="submit">Save</button>
+      <a href="/items" class="muted">Cancel</a>
+    </div>
+  </form>
+</main>
+
+<%- include("../partials/foot") %>

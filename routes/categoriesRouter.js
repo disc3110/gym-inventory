@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const router = Router();
 const categoriesController = require('../controllers/categoriesController');
-const requireAdmin = require('../middleware/requireAdmin');
+const requireAdmin = require('../middle/requireAdmin');
 
 // List all categories
 router.get('/', categoriesController.listCategories);

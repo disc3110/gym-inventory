@@ -1,12 +1,22 @@
-<%- include("../partials/head", { title: category?.name ?? "Category" }) %>
-<%- include("../partials/nav") %>
+<%- include('../partials/head', { title: title }) %>
+<%- include('../partials/nav') %>
 
 <main>
   <a href="/categories" class="muted">← Back to categories</a>
 
-  <h1 style="margin-bottom:6px;"><%= category.name %></h1>
+  <div style="display:flex; align-items:center; justify-content:space-between; margin: 10px 0 6px;">
+    <h1 style="margin:0;"><%= category.name %></h1>
+    <a href="/categories/<%= category.id %>/edit" class="pill" style="text-decoration:none;">Edit</a>
+  </div>
+
   <% if (category.description) { %>
     <p class="muted"><%= category.description %></p>
+  <% } %>
+
+  <% if (error) { %>
+    <div class="card" style="border-color:#f3b4b4;">
+      <p style="margin:0;">❗ <%= error %></p>
+    </div>
   <% } %>
 
   <h2>Items</h2>
@@ -30,7 +40,7 @@
               <a href="/items/<%= item.id %>"><%= item.name %></a>
             </td>
             <td class="muted">
-              <%= [item.brand, item.model].filter(Boolean).join(" ") || "—" %>
+              <%= [item.brand, item.model].filter(Boolean).join(' ') || '—' %>
             </td>
             <td><span class="pill"><%= item.condition %></span></td>
             <td><%= item.quantity %> <%= item.unit %></td>
@@ -39,14 +49,19 @@
       </tbody>
     </table>
   <% } %>
-    <form method="POST" action="/categories/<%= category.id %>/delete"
-        onsubmit="return confirm('Delete this category? Items must be removed first.');">
-        <label>
-            Admin password
-            <input type="password" name="admin_password" required />
-        </label>
-    <button style="margin-top:16px; color:red;">Delete Category</button>
-    </form>
+
+  <hr style="margin: 18px 0;" />
+
+  <form method="POST" action="/categories/<%= category.id %>/delete" onsubmit="return confirm('Delete this category? Items must be removed first.');">
+    <div class="card">
+      <label>
+        Admin password
+        <input type="password" name="admin_password" required />
+      </label>
+      <br /><br />
+      <button style="color:red;">Delete Category</button>
+    </div>
+  </form>
 </main>
 
-<%- include("../partials/foot") %>
+<%- include('../partials/foot') %>

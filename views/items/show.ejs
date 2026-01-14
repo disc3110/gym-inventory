@@ -4,7 +4,10 @@
 <main>
   <a href="/items" class="muted">← Back to items</a>
 
-  <h1 style="margin-bottom:6px;"><%= item.name %></h1>
+  <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:6px;">
+    <h1 style="margin:0;"><%= item.name %></h1>
+    <a href="/items/<%= item.id %>/edit" class="pill" style="text-decoration:none;">Edit</a>
+  </div>
   <p class="muted" style="margin-top:0;">
     Category: <strong><%= item.category_name ?? "—" %></strong>
   </p>

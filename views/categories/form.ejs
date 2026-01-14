@@ -1,4 +1,4 @@
-<%- include("../partials/head", { title }) %>
+<%- include("../partials/head", { title: title }) %>
 <%- include("../partials/nav") %>
 
 <main>
@@ -12,7 +12,7 @@
           type="text"
           name="name"
           required
-          value="<%= category?.name ?? '' %>"
+          value="<%= (category && category.name) ? category.name : '' %>"
         />
       </label>
 
@@ -20,15 +20,19 @@
 
       <label>
         Description
-        <textarea name="description" rows="4"><%= category?.description ?? '' %></textarea>
-      </label>
-
-      <label>
-        Admin password (required to save changes)
-        <input type="password" name="admin_password" required />
+        <textarea name="description" rows="4"><%= (category && category.description) ? category.description : '' %></textarea>
       </label>
 
       <br /><br />
+
+      <% if (action && action.includes('/edit')) { %>
+        <label>
+          Admin password (required to save changes)
+          <input type="password" name="admin_password" required />
+        </label>
+
+        <br /><br />
+      <% } %>
 
       <button type="submit">Save</button>
       <a href="/categories" class="muted">Cancel</a>

@@ -83,10 +83,12 @@
         <textarea name="notes" rows="3"><%= item?.notes ?? '' %></textarea>
       </label>
 
+      <% if (action && action.includes('/edit')) { %>
       <label>
         Admin password (required to save changes)
       <input type="password" name="admin_password" required />
       </label>
+      <% } %>
 
       <br /><br />
 

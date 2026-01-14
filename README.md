@@ -11,6 +11,13 @@ This app lets you:
 - Prevent accidental deletion of categories that still contain items
 - Work with a real relational database schema
 
+## 🌐 Live Preview
+
+🚀 **View the deployed app here:**  
+👉 https://gym-inventory-production.up.railway.app/
+
+> Hosted on Railway with a PostgreSQL database
+
 ---
 
 ## ✨ Features
